@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
   private chatRoom: Room;
 
   ngOnInit(): void {
-    const client = new Client(`ws://localhost:4200/ws`);
+    const host = window.document.location.host.replace(/:.*/, '');
+    const client = new Client(location.protocol.replace('http', 'ws') + host + (location.port ? ':' + location.port : '') + '/ws');
     this.chatRoom = client.join('chat', {channel: 'Default'});
     this.chatRoom.onStateChange.add(({messages}) => this.messages = messages);
   }
