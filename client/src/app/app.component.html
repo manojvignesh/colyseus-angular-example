@@ -1,0 +1,9 @@
+<div>
+  <div>
+    <p *ngFor="let message of messages">{{message}}</p>
+  </div>
+  <div (keydown.enter)="onSubmit()">
+    <input type="text" [formControl]="text">
+    <button (click)="onSubmit()">send</button>
+  </div>
+</div>

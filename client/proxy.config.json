@@ -1,0 +1,7 @@
+{
+  "/ws": {
+    "target": "ws://localhost:2657",
+    "secure": false,
+    "ws": true
+  }
+}
