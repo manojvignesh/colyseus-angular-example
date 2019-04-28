@@ -11,12 +11,18 @@ export class AppComponent implements OnInit {
   messages: string[] = [];
   text = new FormControl('');
   private chatRoom: Room;
+  private client: Client;
 
   ngOnInit(): void {
     const host = window.document.location.host.replace(/:.*/, '');
-    const client = new Client(location.protocol.replace('http', 'ws') + host + (location.port ? ':' + location.port : '') + '/ws');
-    this.chatRoom = client.join('chat', {channel: 'Default'});
-    this.chatRoom.onStateChange.add(({messages}) => this.messages = messages);
+    this.client = new Client(
+      location.protocol.replace('http', 'ws') +
+        host +
+        (location.port ? ':' + location.port : '') +
+        '/ws'
+    );
+    this.chatRoom = this.client.join('chat', {channel: 'Default'});
+    this.chatRoom.onStateChange.add(({messages}) => (this.messages = messages));
   }
 
   onSubmit() {
