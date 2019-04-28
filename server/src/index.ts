@@ -1,5 +1,5 @@
 import {Server} from 'colyseus';
-import {ChatRoom} from './ChatRoom';
+import {ChatRoom} from './chat-room';
 import {createServer} from 'http';
 import * as express from 'express';
 

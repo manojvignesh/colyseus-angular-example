@@ -1,13 +1,15 @@
-import {Client, FossilDeltaSerializer, Room, serialize} from 'colyseus';
+import {Client, Room} from 'colyseus';
+import {ArraySchema, Schema, type} from '@colyseus/schema';
 
-@serialize(FossilDeltaSerializer)
 export class ChatRoom extends Room {
   private channel: any;
 
   onInit(options: any) {
     this.channel = options.channel;
     this.setPatchRate(1000 / 20);
-    this.setState({messages: [`Welcome to ${options.channel} ChatRoom instance.`]});
+    const message = new Message();
+    message.messages.push(`Welcome to ${options.channel} ChatRoom instance.`);
+    this.setState(message);
   }
 
   requestJoin(options: any) {
@@ -32,4 +34,9 @@ export class ChatRoom extends Room {
   onDispose() {
     console.log('Disposing the room');
   }
+}
+
+class Message extends Schema {
+  @type(['string'])
+  messages = new ArraySchema<string>();
 }
