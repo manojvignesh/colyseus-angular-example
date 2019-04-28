@@ -4,7 +4,7 @@ A simple chat client and server to demonstrate how straightforward is to
 integrate [Colyseus](https://github.com/gamestdio/colyseus) room states with Angular 7.
 
 - [View client source](client/src/app/app.component.ts)
-- [View server source](server/ChatRoom.ts)
+- [View server source](server/src/chat-room.ts)
 
 ## Running locally:
 
